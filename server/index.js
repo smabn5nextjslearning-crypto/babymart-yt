@@ -4,7 +4,11 @@ import { errorHandler } from "./middleware/errorMiddleware.js";
 import cors from "cors";
 import connectDB from "./config/db.js";
 
-// Load env vars
+
+// Routes import
+import authRoutes from "./routes/authRoutes.js"
+
+// Load env vars 
 dotenv.config();
 
 // Connect to database
@@ -57,9 +61,10 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 // Debug middleware for order routes
 
 // Routes
-
+app.use("/api/auth",authRoutes)
 
 // API Documentation
+
 
 // Home route
 app.get("/", (req, res) => {
@@ -85,7 +90,7 @@ app.listen(PORT, () => {
   console.log(`🚀 API Server is running!`);
 
   // console.log(`🚀 BabyShop API Server is running!`);
-  // console.log(`📍 Server URL: http://localhost:${PORT}`);
+  console.log(`📍 Server URL: http://localhost:${PORT}`);
   // console.log(
   //   `🌐 Client URL: ${process.env.CLIENT_URL || "http://localhost:3000"}`
   // );
